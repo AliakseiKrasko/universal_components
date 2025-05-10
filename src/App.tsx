@@ -1,8 +1,8 @@
-import {Modal} from "./components/Modal/Modal.tsx";
+import {Card} from "./components/Card/Card.tsx";
 
 function App() {
     return <div>
-        <Modal open={true} />
+        <Card />
     </div>
 }
 export default App
