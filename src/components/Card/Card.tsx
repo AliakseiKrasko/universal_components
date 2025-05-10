@@ -8,7 +8,13 @@ export const Card = () => {
     return (
         <>
             <button onClick={() => setShowModal(true)}>Card</button>
-            {<Modal open={showModal} onClose={() => setShowModal(false)} />}
+            <Modal open={showModal} onClose={() => setShowModal(false)} modalTitle={"Cart"}>
+                <ul>
+                    <li>1 товар</li>
+                    <li>2 товар</li>
+                    <li>3 товар</li>
+                </ul>
+            </Modal>
         </>
     );
 };
