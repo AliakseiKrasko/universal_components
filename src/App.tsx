@@ -1,8 +1,8 @@
-import {Card} from "./components/Card/Card.tsx";
+import {Header} from "./components/Header/Header.tsx";
 
 function App() {
     return <div>
-        <Card />
+        <Header />
     </div>
 }
 export default App

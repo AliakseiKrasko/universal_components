@@ -1,0 +1,20 @@
+.headerWrapper {
+    background-color: lightgray;
+    margin-bottom: 20px;
+    position: fixed;
+    height: 60px;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 1440px;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+}
