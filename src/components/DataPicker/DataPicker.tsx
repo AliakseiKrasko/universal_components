@@ -1,13 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { DayPicker, DayPickerProps } from "react-day-picker";
-import { Popover, PopoverContent, PopoverTrigger } from "../../popover/popover";
 import clsx from "clsx";
 import "react-day-picker/style.css";
-import { sharedDatePickerClassNames } from "../datePickerClassnames";
-import s from "../datePicker.module.css";
-import { CalendarOutline } from "assets/icons";
+import { sharedDatePickerClassNames } from "./dataPickerClassnames.ts";
+import s from "./datePicker.module.css";
+import { Calendar } from "lucide-react";
+import {DayPicker, type DayPickerProps} from "react-day-picker";
+import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -34,7 +33,7 @@ export const DatePickerSingle = ({
                 <PopoverTrigger asChild>
                     <div className={clsx(s.datePicker)}>
                         <div>{value ? value.toLocaleDateString() : "Select date"}</div>
-                        <CalendarOutline width="24px" height="24px" />
+                        <Calendar width="24px" height="24px" />
                     </div>
                 </PopoverTrigger>
                 <PopoverContent>
