@@ -2,7 +2,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color: var(--light-900);
+    color: #FFFFFF;
 }
 
 .datePicker {
@@ -11,19 +11,22 @@
     padding: 6px 12px;
     display: inline-flex;
     justify-content: space-between;
-    border: 1px solid var(--dark-300);
+    align-items: center;
+    border: 1px solid silver;
     border-radius: 2px;
-    background-color: var(--dark-500);
-    color: var(--light-100);
+    background-color: #FFFFFF;
+    color: #171717;
     line-height: 24px;
     font-size: 16px;
     font-weight: 400;
     position: relative;
+    top: 50px;
+    left: 10px;
     cursor: pointer;
 }
 
 .datePicker:focus {
-    outline: 2px solid var(--primary-700);
+    border: 2px solid #2F68CC;
 }
 
 .wrapperCalendar {

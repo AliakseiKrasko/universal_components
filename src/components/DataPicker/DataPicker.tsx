@@ -47,11 +47,11 @@ export const DatePickerSingle = ({
                             mode="single"
                             selected={selected}
                             onSelect={setSelected}
-                            footer={
+                            /*footer={
                                 selected
                                     ? `You picked ${selected.toLocaleDateString()}.`
                                     : "Please pick a date."
-                            }
+                            }*/
                             className="rdp-root"
                         />
                     </div>
