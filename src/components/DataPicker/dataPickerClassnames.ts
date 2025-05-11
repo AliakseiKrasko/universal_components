@@ -2,7 +2,7 @@ import s from "./datePicker.module.css";
 
 export const sharedDatePickerClassNames = {
     root: s.rdpRoot,
-    day: s.rdpDay,
+    /*day: s.rdpDay,
     day_button: s.rdpDay_button,
     selected: s.rdpDay_selected,
     range_start: s.rdpRange_start,
@@ -22,5 +22,6 @@ export const sharedDatePickerClassNames = {
     weekday: s.rdpWeekday,
     week: s.rdpWeek,
     outside: s.rdpOutside,
-    today: s.rdpToday,
+    today: s.rdpToday,*/
+    weekend: s.weekendDay
 } as const;

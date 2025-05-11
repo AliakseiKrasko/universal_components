@@ -7,6 +7,7 @@ import { Calendar } from "lucide-react";
 import { DayPicker, type DayPickerProps } from "react-day-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { useEffect, useState } from "react";
+import {sharedDatePickerClassNames} from "./dataPickerClassnames.ts";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -24,10 +25,9 @@ export const DatePickerSingle = ({
 
     useEffect(() => {
         if (!value) {
-            // Устанавливаем сегодняшнюю дату по умолчанию, если value не передано
             onDateChange(new Date());
         }
-    }, []); // Пустой массив зависимостей - эффект выполняется только при монтировании
+    }, []);
 
     const handleSelect = (date: Date | undefined) => {
         if (date) {
@@ -55,7 +55,8 @@ export const DatePickerSingle = ({
                             mode="single"
                             selected={value || defaultDate}
                             onSelect={handleSelect}
-                            className="rdp-root"
+                            classNames={sharedDatePickerClassNames}
+                            className={"rdp-root"}
                             {...restProps}
                         />
                     </div>

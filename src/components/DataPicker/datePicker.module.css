@@ -203,6 +203,10 @@
     font-weight: 700;
 }
 
+.weekendDay {
+    color: red;
+}
+
 /* Disabled */
 .rdpDisabled {
     opacity: 0.5;
