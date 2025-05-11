@@ -3,9 +3,10 @@
 import clsx from "clsx";
 import "react-day-picker/style.css";
 import s from "./datePicker.module.css";
-import {Calendar} from "lucide-react";
-import {DayPicker, type DayPickerProps} from "react-day-picker";
-import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
+import { Calendar } from "lucide-react";
+import { DayPicker, type DayPickerProps } from "react-day-picker";
+import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+import { useEffect, useState } from "react";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -14,18 +15,23 @@ export type DatePickerSingleProps = {
 } & Omit<DayPickerProps, "mode" | "selected" | "onSelect">;
 
 export const DatePickerSingle = ({
-                                     value, // Получаем текущее значение из родителя
-                                     onDateChange, // Получаем колбэк для уведомления родителя
+                                     value,
+                                     onDateChange,
                                      label = "Select Date",
-                                     ...restProps // Получаем остальные пропсы для DayPicker
+                                     ...restProps
                                  }: DatePickerSingleProps) => {
+    const [defaultDate, setDefaultDate] = useState<Date>(new Date());
+
+    useEffect(() => {
+        if (!value) {
+            // Устанавливаем сегодняшнюю дату по умолчанию, если value не передано
+            onDateChange(new Date());
+        }
+    }, []); // Пустой массив зависимостей - эффект выполняется только при монтировании
 
     const handleSelect = (date: Date | undefined) => {
         if (date) {
-            onDateChange(date); // Уведомляем родителя об изменении
-        } else {
-            // Опционально: логика очистки даты, если нужно
-            // onDateChange(undefined);
+            onDateChange(date);
         }
     };
 
@@ -35,7 +41,7 @@ export const DatePickerSingle = ({
             <Popover>
                 <PopoverTrigger asChild>
                     <div className={clsx(s.datePicker)}>
-                        <div>{value ? value.toLocaleDateString() : "Select date"}</div>
+                        <div>{(value || defaultDate).toLocaleDateString()}</div>
                         <Calendar width="24px" height="24px" />
                     </div>
                 </PopoverTrigger>
@@ -47,10 +53,10 @@ export const DatePickerSingle = ({
                             disabled={{ before: new Date() }}
                             animate
                             mode="single"
-                            selected={value} // Используем пропс value
-                            onSelect={handleSelect} // Используем обработчик, вызывающий onDateChange
+                            selected={value || defaultDate}
+                            onSelect={handleSelect}
                             className="rdp-root"
-                            {...restProps} // Передаем оставшиеся пропсы в DayPicker
+                            {...restProps}
                         />
                     </div>
                 </PopoverContent>
