@@ -2,11 +2,11 @@
 
 import clsx from "clsx";
 import "react-day-picker/style.css";
-import { sharedDatePickerClassNames } from "./dataPickerClassnames.ts";
 import s from "./datePicker.module.css";
-import { Calendar } from "lucide-react";
+import {Calendar} from "lucide-react";
 import {DayPicker, type DayPickerProps} from "react-day-picker";
 import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
+import {useState} from "react";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -16,15 +16,16 @@ export type DatePickerSingleProps = {
 
 export const DatePickerSingle = ({
                                      value,
-                                     onDateChange,
                                      label = "Select Date",
                                      ...restProps
                                  }: DatePickerSingleProps) => {
-    const handleSelect = (date: Date | undefined) => {
+    /*const handleSelect = (date: Date | undefined) => {
         if (date) {
             onDateChange(date);
         }
-    };
+    };*/
+
+    const [selected, setSelected] = useState<Date>();
 
     return (
         <div>
@@ -39,13 +40,19 @@ export const DatePickerSingle = ({
                 <PopoverContent>
                     <div className={s.wrapperCalendar}>
                         <DayPicker
-                            mode="single"
-                            selected={value}
-                            onSelect={handleSelect}
-                            ISOWeek
                             showOutsideDays
-                            classNames={sharedDatePickerClassNames}
-                            {...restProps}
+                            weekStartsOn={1}
+                            disabled={{ before: new Date() }}
+                            animate
+                            mode="single"
+                            selected={selected}
+                            onSelect={setSelected}
+                            footer={
+                                selected
+                                    ? `You picked ${selected.toLocaleDateString()}.`
+                                    : "Please pick a date."
+                            }
+                            className="rdp-root"
                         />
                     </div>
                 </PopoverContent>

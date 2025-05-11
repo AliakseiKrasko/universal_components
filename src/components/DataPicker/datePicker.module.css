@@ -34,18 +34,15 @@
     padding: 16px 24px;
     display: flex;
     justify-content: center;
-    background-color: var(--dark-500);
-    border: 1px solid var(--dark-300);
+    background-color: #FFFFFF;
+    border: 1px solid silver;
     border-radius: 2px;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 /* DayPicker Root */
 .rdpRoot {
     position: relative;
-    border:  1px solid silver;
-    padding: 16px 24px;
-    /*background-color: #171717;*/
     box-sizing: border-box;
 }
 
