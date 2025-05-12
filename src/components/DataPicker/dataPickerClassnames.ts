@@ -1,27 +1,15 @@
+/*
 import s from "./datePicker.module.css";
 
 export const sharedDatePickerClassNames = {
     root: s.rdpRoot,
-    /*day: s.rdpDay,
-    day_button: s.rdpDay_button,
-    selected: s.rdpDay_selected,
-    range_start: s.rdpRange_start,
-    range_middle: s.rdpRange_middle,
-    range_end: s.rdpRange_end,
+    day: s.rdpDay,
+    day_selected: s.rdpDay_selected,
+    day_today: s.rdpDay_today,
+    day_outside: s.rdpDay_outside,
+    day_disabled: s.rdpDay_disabled,
     caption_label: s.rdpCaption_label,
-    dropdown: s.rdpDropdown,
-    button_next: s.rdpButton_next,
-    button_previous: s.rdpButton_previous,
-    nav: s.rdpNav,
-    dropdowns: s.rdpDropdowns,
-    dropdown_root: s.rdpDropdown_root,
-    month: s.rdpMonth,
-    months: s.rdpMonths,
-    month_caption: s.rdpMonth_caption,
-    weekdays: s.rdpWeekdays,
+    nav_button: s.rdpNav_button,
     weekday: s.rdpWeekday,
-    week: s.rdpWeek,
-    outside: s.rdpOutside,
-    today: s.rdpToday,*/
-    weekend: s.weekendDay
-} as const;
+    weekend: s.weekendDay,
+} as const;*/

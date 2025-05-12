@@ -1,6 +1,6 @@
-.text {
+.dateText {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
     color: #FFFFFF;
 }
@@ -8,20 +8,20 @@
 .datePicker {
     width: 262px;
     min-height: 36px;
-    padding: 6px 12px;
+    padding: 16px 24px;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     border: 1px solid silver;
     border-radius: 2px;
-    background-color: #FFFFFF;
-    color: #171717;
+    background-color: #333333;
+    color: #FFFFFF;
     line-height: 24px;
     font-size: 16px;
     font-weight: 400;
     position: relative;
     top: 50px;
-    left: 10px;
+    left: 50px;
     cursor: pointer;
 }
 
@@ -37,65 +37,82 @@
     padding: 16px 24px;
     display: flex;
     justify-content: center;
-    background-color: #FFFFFF;
-    border: 1px solid silver;
-    border-radius: 2px;
-    /*box-sizing: border-box;*/
-}
-
-/* DayPicker Root */
-.rdpRoot {
-    position: relative;
-    box-sizing: border-box;
-}
-
-.rdpRoot * {
-    box-sizing: border-box;
-}
-
-/* Day Styles */
-.rdpDay {
-    width: 36px;
-    height: 36px;
-    text-align: center;
-    background-color: inherit;
-    border-radius: 100%;
-    border: none;
-    color: var(--light-100);
-    font-weight: 400;
+    background-color: #171717;
+    border: 1px solid #333333;
+    overflow: hidden;
     font-size: 16px;
+    font-weight: 400;
     line-height: 24px;
-    cursor: pointer;
+    border-radius: 8px;
+    color: #FFFFFF;
 }
 
-.rdpDay:hover {
-    background-color: var(--primary-700);
+.popoverContent {
+    z-index: 50;
+    background-color: #171717;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 100vw; /* чтобы не выходил за экран */
+    overflow: auto;
 }
 
-.rdpDay:active {
-    background-color: var(--primary-900);
-}
 
-.rdpDay:focus {
-    background-color: inherit;
-    border: 2px solid var(--primary-300);
+/* Сегодняшний день */
+.rdpDay_today {
+    color: #2563eb;
+    font-weight: bold;
 }
 
 .rdpDay_selected {
-    background-color: var(--primary-900);
+    background-color: #2563eb;
+    color: white;
+    font-weight: 600;
+    border-radius: 50%;
 }
 
-.rdpDay_selected:focus {
-    border: 2px solid var(--primary-300);
+
+/* Заблокированный день */
+.rdpDayDisabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.rdpDay_button {
-    width: 36px;
-    height: 36px;
-    display: inline-block;
+/* Название месяца (Май 2025) */
+.rdpCaptionLabel {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+    margin-left: 32px;
+    color: #FFFFFF;
 }
 
-/* DayPicker Navigation */
+
+
+/* Стили для выходных */
+.weekendDay {
+    color: #ef4444; /* Красный цвет */
+}
+
+
+
+.error {
+    border: 1px solid red;
+}
+
+.focused {
+    outline: 2px solid #2684ff;
+}
+
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+
 .rdpNav {
     position: absolute;
     inset-block-start: 0;
@@ -112,7 +129,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--dark-100);
+    background-color: #4C4C4C;
     border: none;
     cursor: pointer;
 }
@@ -121,7 +138,7 @@
 .rdpButton_previous svg {
     width: 20px;
     height: 20px;
-    fill: var(--light-100);
+    fill: #FFFFFF;
 }
 
 .rdpButton_next:disabled,
@@ -130,100 +147,4 @@
     opacity: 0.5;
 }
 
-/* Caption */
-.rdpCaption_label {
-    display: flex;
-    align-items: center;
-    padding: 8px 6px;
-    min-height: 36px;
-    color: var(--light-100);
-    font-weight: 700;
-    line-height: 24px;
-}
 
-/* Month Styles */
-.rdpMonths {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: fit-content;
-}
-
-/* Weekday Styles */
-
-.rdpWeekdays {
-    color: var(--light-900);
-}
-
-.rdpWeekday {
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    width: 36px;
-    height: 40px;
-}
-
-/* Week Styles */
-
-.rdpWeek :nth-child(6):not(.rdpOutside, .rdpToday),
-.rdpWeek :nth-child(7):not(.rdpOutside, .rdpToday) {
-    color: var(--danger-300);
-}
-
-.rdpOutside {
-    color: var(--light-900);
-}
-
-/* Dropdowns */
-.rdpDropdown {
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-    opacity: 0;
-    appearance: none;
-    cursor: pointer;
-}
-
-.rdpDropdown_root {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
-
-.rdpDropdown_root svg {
-    fill: var(--light-100);
-}
-
-/* Today Styles */
-.rdpToday {
-    color: var(--primary-500);
-}
-
-.rdpToday.rdpDay_selected {
-    color: var(--light-100);
-    font-weight: 700;
-}
-
-.weekendDay {
-    color: red;
-}
-
-/* Disabled */
-.rdpDisabled {
-    opacity: 0.5;
-}
-
-/* Range Styles */
-.rdpRange_start:not(.rdpRange_end) {
-    border-radius: 18px 0 0 18px;
-    background-color: var(--primary-900);
-}
-
-.rdpRange_middle {
-    border-radius: 0;
-    background-color: var(--primary-900);
-}
-
-.rdpRange_end:not(.rdpRange_start) {
-    border-radius: 0 18px 18px 0;
-    background-color: var(--primary-900);
-}

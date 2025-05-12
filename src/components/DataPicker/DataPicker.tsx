@@ -3,65 +3,131 @@
 import clsx from "clsx";
 import "react-day-picker/style.css";
 import s from "./datePicker.module.css";
-import { Calendar } from "lucide-react";
-import { DayPicker, type DayPickerProps } from "react-day-picker";
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
-import { useEffect, useState } from "react";
-import {sharedDatePickerClassNames} from "./dataPickerClassnames.ts";
+import {Calendar} from "lucide-react";
+import {DayPicker, type DayPickerProps} from "react-day-picker";
+import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
+import {useId, useMemo, useState} from "react";
+import "./../../index.css";
 
 export type DatePickerSingleProps = {
     value?: Date;
-    onDateChange: (date: Date) => void;
+    defaultValue?: Date;
+    onDateChange?: (date: Date | undefined) => void;
     label?: string;
-} & Omit<DayPickerProps, "mode" | "selected" | "onSelect">;
+    placeholder?: string;
+    disabled?: boolean;
+    required?: boolean;
+    className?: string;
+    inputClassName?: string;
+    error?: string;
+    hint?: string;
+    calendarProps?: Omit<DayPickerProps, "mode" | "selected" | "onSelect">;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">;
 
 export const DatePickerSingle = ({
                                      value,
+                                     defaultValue,
                                      onDateChange,
                                      label = "Select Date",
+                                     placeholder = "Select date",
+                                     disabled = false,
+                                     required = false,
+                                     className,
+                                     inputClassName,
+                                     error,
+                                     hint,
+                                     calendarProps,
                                      ...restProps
                                  }: DatePickerSingleProps) => {
-    const [defaultDate, setDefaultDate] = useState<Date>(new Date());
-
-    useEffect(() => {
-        if (!value) {
-            onDateChange(new Date());
-        }
-    }, []);
+    const isControlled = value !== undefined;
+    const [internalDate, setInternalDate] = useState<Date | undefined>(defaultValue);
+    const selectedDate = isControlled ? value : internalDate;
+    const today = useMemo(() => new Date(), []);
+    const [isFocused, setIsFocused] = useState(false);
+    const inputId = useId();
 
     const handleSelect = (date: Date | undefined) => {
-        if (date) {
-            onDateChange(date);
+        if (!isControlled) {
+            setInternalDate(date);
         }
+        onDateChange?.(date);
     };
 
     return (
-        <div>
-            <div className={s.text}>{label}</div>
+        <div className={clsx(s.container, className)} {...restProps}>
+            {label && (
+                <label htmlFor={inputId} className={s.label}>
+                    {label}
+                    {required && <span className={s.requiredIndicator}>*</span>}
+                </label>
+            )}
+
             <Popover>
                 <PopoverTrigger asChild>
-                    <div className={clsx(s.datePicker)}>
-                        <div>{(value || defaultDate).toLocaleDateString()}</div>
-                        <Calendar width="24px" height="24px" />
+                    <div
+                        id={inputId}
+                        tabIndex={disabled ? -1 : 0}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        className={clsx(
+                            s.datePicker,
+                            disabled && s.disabled,
+                            error && s.error,
+                            isFocused && s.focused,
+                            inputClassName
+                        )}
+                        aria-disabled={disabled}
+                        role="button"
+                    >
+                        <div className={s.dateText}>
+                            {selectedDate
+                                ? selectedDate.toLocaleDateString("en-GB", {
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit"
+                                })
+                                : placeholder}
+                        </div>
+                        <Calendar className={s.calendarIcon} width={24} height={24} />
                     </div>
                 </PopoverTrigger>
-                <PopoverContent>
-                    <div className={s.wrapperCalendar}>
-                        <DayPicker
-                            showOutsideDays
-                            weekStartsOn={1}
-                            disabled={{ before: new Date() }}
-                            animate
-                            mode="single"
-                            selected={value || defaultDate}
-                            onSelect={handleSelect}
-                            classNames={sharedDatePickerClassNames}
-                            className={"rdp-root"}
-                            {...restProps}
-                        />
-                    </div>
-                </PopoverContent>
+
+                {!disabled && (
+                    <PopoverContent className={s.popoverContent} side="bottom" align="center" avoidCollisions={true}>
+                        <div className={s.wrapperCalendar}>
+                            <DayPicker
+                                showOutsideDays
+                                weekStartsOn={1}
+                                disabled={{ before: today }}
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={handleSelect}
+                                modifiers={{
+                                    today: today,
+                                    weekend: (date) => date.getDay() === 0 || date.getDay() === 6,
+                                }}
+                                modifiersClassNames={{
+                                    today: s.rdpDay_today,
+                                    selected: s.rdpDay_selected,
+                                    weekend: s.weekendDay,
+                                    disabled: s.rdpDayDisabled,
+
+                                }}
+                                classNames={{
+                                    caption_label: s.rdpCaptionLabel,
+                                    button_next: s.rdpButton_next,
+                                    button_previous: s.rdpButton_previous,
+                                    nav: s.rdpNav,
+                                }}
+                                {...calendarProps}
+                            />
+                        </div>
+                    </PopoverContent>
+                )}
             </Popover>
+
+            {hint && !error && <div className={s.hint}>{hint}</div>}
+            {error && <div className={s.errorMessage}>{error}</div>}
         </div>
     );
 };
