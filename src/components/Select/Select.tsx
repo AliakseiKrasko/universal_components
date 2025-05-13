@@ -1,13 +1,12 @@
 import s from "./select.module.css";
-import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import * as RadixSelect from "@radix-ui/react-select";
 import { clsx } from "clsx";
-
 import {type ComponentPropsWithoutRef, type ComponentRef, forwardRef, useId} from "react";
 import type {NullableProps} from "../types/NullableProps.ts";
 import type {SelectItemsProps} from "../types/SelectItemsProps.ts";
 import {SelectItem} from "./SelectItems/selectItems.tsx";
 import { Typography } from "../typography/typography.tsx";
+import {ChevronDownIcon, ChevronUpIcon} from "@radix-ui/react-icons";
 
 export const Select = forwardRef<ComponentRef<typeof RadixSelect.Trigger>, SelectProps>(
     (
@@ -83,4 +82,3 @@ export type SelectProps = {
     items: SelectItemsProps[];
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>;
 
-Select.displayName = "Select";

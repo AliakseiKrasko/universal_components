@@ -21,13 +21,13 @@ function App() {
     };
 
     return <div>
-        <Header />
+        {/*<Header />*/}
 
-        <DatePicker mode="range" />
+        {/*<DatePicker mode="range" />*/}
 
 
         <Select
-            label="Select Item"
+            label="Select-box"
             placeholder="Choose an option"
             value={selectedValue}
             onValueChange={handleValueChange}

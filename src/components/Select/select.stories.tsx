@@ -13,8 +13,8 @@ const meta: Meta<typeof Select> = {
         disabled: { control: "boolean" },
     },
     args: {
-        defaultValue: "english",
-        groupLabel: "Languages",
+        defaultValue: "React",
+        groupLabel: "Skills",
     },
     parameters: {
         layout: "centered",
@@ -26,13 +26,13 @@ type Story = StoryObj<typeof Select>;
 
 export const SelectLanguages: Story = {
     args: {
-        label: "select languages",
+        label: "select skills",
         items: [
-            { value: "english", label: "English" },
-            { value: "russian", label: "Russian" },
-            { value: "spanish", label: "Spanish" },
-            { value: "french", label: "French" },
-            { value: "turkish", label: "Turkish" },
+            { value: "HTML", label: "HTML" },
+            { value: "CSS", label: "CSS" },
+            { value: "React", label: "React" },
+            { value: "Redux", label: "Redux" },
+            { value: "TypeScript", label: "TypeScript" },
         ],
         disabled: false,
     },
@@ -40,12 +40,13 @@ export const SelectLanguages: Story = {
 
 export const SelectDisabled: Story = {
     args: {
-        label: "select languages",
+        label: "select skills",
         items: [
-            { value: "english", label: "English" },
-            { value: "russian", label: "Russian" },
-            { value: "spanish", label: "Spanish" },
-            { value: "french", label: "French" },
+            { value: "HTML", label: "HTML" },
+            { value: "CSS", label: "CSS" },
+            { value: "React", label: "React" },
+            { value: "Redux", label: "Redux" },
+            { value: "TypeScript", label: "TypeScript" },
         ],
         disabled: true,
     },
