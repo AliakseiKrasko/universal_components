@@ -1,5 +1,5 @@
 import {Header} from "./components/Header/Header.tsx";
-import {DatePickerSingle} from "./components/DataPicker/DataPicker.tsx";
+import {DatePickerSingle} from "./components/DatePickerSingle/DatePickerSingle/DatePickerSingle.tsx";
 import * as React from "react";
 
 function App() {

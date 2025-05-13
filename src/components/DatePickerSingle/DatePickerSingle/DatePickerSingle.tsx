@@ -2,12 +2,12 @@
 
 import clsx from "clsx";
 import "react-day-picker/style.css";
-import s from "./datePicker.module.css";
+import s from "../datePicker.module.css";
 import {Calendar} from "lucide-react";
 import {DayPicker, type DayPickerProps} from "react-day-picker";
 import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
 import {useId, useMemo, useState} from "react";
-import "./../../index.css";
+import "../../../index.css";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -96,6 +96,7 @@ export const DatePickerSingle = ({
                     <PopoverContent className={s.popoverContent} side="bottom" align="center" avoidCollisions={true}>
                         <div className={s.wrapperCalendar}>
                             <DayPicker
+                                animate={true}
                                 showOutsideDays
                                 weekStartsOn={1}
                                 disabled={{ before: today }}
