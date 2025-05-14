@@ -16,7 +16,6 @@ function App() {
             value={selectedDate}
             onDateChange={setSelectedDate}
             placeholder="Выберите дату"
-
         />
 
 
