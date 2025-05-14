@@ -3,11 +3,10 @@
 import clsx from "clsx";
 import "react-day-picker/style.css";
 import s from "../datePicker.module.css";
-import {Calendar} from "lucide-react";
-import {DayPicker, type DayPickerProps} from "react-day-picker";
-import {Popover, PopoverContent, PopoverTrigger} from "@radix-ui/react-popover";
-import {useId, useMemo, useState} from "react";
-import "../../../index.css";
+import { Calendar } from "lucide-react";
+import { DayPicker, type DayPickerProps } from "react-day-picker";
+import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+import { useId, useMemo, useState, useEffect } from "react";
 
 export type DatePickerSingleProps = {
     value?: Date;
@@ -45,6 +44,15 @@ export const DatePickerSingle = ({
     const today = useMemo(() => new Date(), []);
     const [isFocused, setIsFocused] = useState(false);
     const inputId = useId();
+    const hintId = `${inputId}-hint`;
+    const errorId = `${inputId}-error`;
+
+    // Синхронизация defaultValue
+    useEffect(() => {
+        if (!isControlled) {
+            setInternalDate(defaultValue);
+        }
+    }, [defaultValue]);
 
     const handleSelect = (date: Date | undefined) => {
         if (!isControlled) {
@@ -56,7 +64,7 @@ export const DatePickerSingle = ({
     return (
         <div className={clsx(s.container, className)} {...restProps}>
             {label && (
-                <label htmlFor={inputId} className={s.label}>
+                <label htmlFor={inputId} id={`${inputId}-label`} className={s.label}>
                     {label}
                     {required && <span className={s.requiredIndicator}>*</span>}
                 </label>
@@ -64,11 +72,9 @@ export const DatePickerSingle = ({
 
             <Popover>
                 <PopoverTrigger asChild>
-                    <div
+                    <button
                         id={inputId}
-                        tabIndex={disabled ? -1 : 0}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
+                        disabled={disabled}
                         className={clsx(
                             s.datePicker,
                             disabled && s.disabled,
@@ -76,8 +82,13 @@ export const DatePickerSingle = ({
                             isFocused && s.focused,
                             inputClassName
                         )}
-                        aria-disabled={disabled}
-                        role="button"
+                        aria-labelledby={`${inputId}-label`}
+                        aria-describedby={error ? errorId : hint ? hintId : undefined}
+                        aria-invalid={!!error}
+                        aria-required={required}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        type="button"
                     >
                         <div className={s.dateText}>
                             {selectedDate
@@ -89,14 +100,19 @@ export const DatePickerSingle = ({
                                 : placeholder}
                         </div>
                         <Calendar className={s.calendarIcon} width={24} height={24} />
-                    </div>
+                    </button>
                 </PopoverTrigger>
 
                 {!disabled && (
-                    <PopoverContent className={s.popoverContent} side="bottom" align="center" avoidCollisions={true}>
+                    <PopoverContent
+                        className={s.popoverContent}
+                        side="bottom"
+                        align="center"
+                        avoidCollisions={true}
+                    >
                         <div className={s.wrapperCalendar}>
                             <DayPicker
-                                animate={true}
+                                animate
                                 showOutsideDays
                                 weekStartsOn={1}
                                 disabled={{ before: today }}
@@ -112,7 +128,6 @@ export const DatePickerSingle = ({
                                     selected: s.rdpDay_selected,
                                     weekend: s.weekendDay,
                                     disabled: s.rdpDayDisabled,
-
                                 }}
                                 classNames={{
                                     caption_label: s.rdpCaptionLabel,
@@ -127,8 +142,16 @@ export const DatePickerSingle = ({
                 )}
             </Popover>
 
-            {hint && !error && <div className={s.hint}>{hint}</div>}
-            {error && <div className={s.errorMessage}>{error}</div>}
+            {hint && !error && (
+                <div id={hintId} className={s.hint}>
+                    {hint}
+                </div>
+            )}
+            {error && (
+                <div id={errorId} className={s.errorMessage}>
+                    {error}
+                </div>
+            )}
         </div>
     );
 };

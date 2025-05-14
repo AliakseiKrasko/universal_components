@@ -1,3 +1,11 @@
+.label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+}
+
 .dateText {
     font-weight: 400;
     font-size: 16px;
@@ -121,30 +129,28 @@
     align-items: center;
 }
 
+.rdpButton_next svg,
+.rdpButton_previous svg {
+    fill: white !important;
+}
+
 .rdpButton_next,
 .rdpButton_previous {
+    background-color: #444;        /* Серый круг */
+    color: #fff;                   /* Белая иконка */
+    border: none;
+    border-radius: 50%;            /* Круг */
     width: 36px;
     height: 36px;
-    border-radius: 100%;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4C4C4C;
-    border: none;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.rdpButton_next svg,
-.rdpButton_previous svg {
-    width: 20px;
-    height: 20px;
-    fill: #FFFFFF;
+.rdpButton_next:hover,
+.rdpButton_previous:hover {
+    background-color: #666;        /* Потемнее при наведении */
 }
-
-.rdpButton_next:disabled,
-.rdpButton_previous:disabled {
-    cursor: revert;
-    opacity: 0.5;
-}
-
-

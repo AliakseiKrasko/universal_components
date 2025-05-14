@@ -1,41 +1,24 @@
-import {Header} from "./components/Header/Header.tsx";
-import {DatePicker} from "./components/DatePickerSingle/DatePicker/DatePicker.tsx";
-import {Select} from "./components/Select/Select.tsx";
 import {useState} from "react";
-import {Typography} from "./components/typography/typography.tsx";
-
-
-
-
-const items = [
-    { value: "item1", label: "Item 1" },
-    { value: "item2", label: "Item 2" },
-    { value: "item3", label: "Item 3" },
-];
+import {DatePickerSingle} from "./components/DatePickerSingle/DatePickerSingle/DatePickerSingle.tsx";
 
 function App() {
-    const [selectedValue, setSelectedValue] = useState<string | undefined>();
 
-    const handleValueChange = (newValue: string) => {
-        setSelectedValue(newValue);
-    };
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+
+
 
     return <div>
         {/*<Header />*/}
 
         {/*<DatePicker mode="range" />*/}
 
+        <DatePickerSingle
+            value={selectedDate}
+            onDateChange={setSelectedDate}
+            placeholder="Выберите дату"
 
-        <Select
-            label="Select-box"
-            placeholder="Choose an option"
-            value={selectedValue}
-            onValueChange={handleValueChange}
-            items={items}
-            groupLabel="Group 1"
-            withSeparator={true}
         />
-        {selectedValue && <Typography variant="regular_14">Selected: {selectedValue}</Typography>}
+
 
     </div>
 }
