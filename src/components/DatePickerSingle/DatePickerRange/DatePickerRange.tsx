@@ -10,7 +10,7 @@ import { useId, useMemo, useState } from "react";
 
 export type DatePickerRangeProps = {
     value?: DateRange;
-    defaultValue?: DateRange;
+    defaultDate?: DateRange;
     onDateChange?: (dates: DateRange) => void;
     label?: string;
     placeholder?: string;
@@ -25,7 +25,7 @@ export type DatePickerRangeProps = {
 
 export const DatePickerRange = ({
                                     value,
-                                    defaultValue,
+                                    defaultDate,
                                     onDateChange,
                                     label = "Select Date Range",
                                     placeholder = "Select date range",
@@ -39,7 +39,7 @@ export const DatePickerRange = ({
                                     ...restProps
                                 }: DatePickerRangeProps) => {
     const isControlled = value !== undefined;
-    const [internalDates, setInternalDates] = useState<DateRange>(defaultValue || { from: undefined, to: undefined });
+    const [internalDates, setInternalDates] = useState<DateRange>(defaultDate || { from: undefined, to: undefined });
     const selectedDates = isControlled ? value : internalDates;
     const today = useMemo(() => new Date(), []);
     const [isFocused, setIsFocused] = useState(false);
