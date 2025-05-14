@@ -121,6 +121,9 @@ export const DatePickerRange = ({
                                         selected: s.rdpDay_selected,
                                         weekend: s.weekendDay,
                                         disabled: s.rdpDayDisabled,
+                                        inRange: s.rdpDay_inRange, // добавляем новый класс для дат в диапазоне
+                                        range_start: s.rdpDay_first, // для первого дня диапазона
+                                        last: s.rdpDay_last, // для последнего дня диапазона
                                     }}
                                     classNames={{
                                         caption_label: s.rdpCaptionLabel,

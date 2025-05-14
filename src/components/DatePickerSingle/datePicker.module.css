@@ -156,3 +156,18 @@
 .rdpButton_previous:hover {
     background-color: #666;        /* Потемнее при наведении */
 }
+
+
+
+/* Добавьте !important для приоритета */
+.rdpDay_inRange {
+    background-color: #30d6b7 !important;
+    color: white !important;
+}
+
+.rdpDay_first,
+.rdpDay_last {
+    background-color: #2563eb !important;
+    color: white !important;
+}
+

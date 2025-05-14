@@ -10,7 +10,7 @@ import { useId, useMemo, useState  } from "react";
 
 export type DatePickerSingleProps = {
     value?: Date;
-    defaultValue?: Date;
+    defaultDate?: Date;
     onDateChange?: (date: Date | undefined) => void;
     label?: string;
     placeholder?: string;
@@ -25,7 +25,7 @@ export type DatePickerSingleProps = {
 
 export const DatePickerSingle = ({
                                      value,
-                                     defaultValue,
+                                     defaultDate,
                                      onDateChange,
                                      label = "Select Date",
                                      placeholder = "Select date",
@@ -39,7 +39,7 @@ export const DatePickerSingle = ({
                                      ...restProps
                                  }: DatePickerSingleProps) => {
     const isControlled = value !== undefined;
-    const [internalDate, setInternalDate] = useState<Date | undefined>(defaultValue);
+    const [internalDate, setInternalDate] = useState<Date | undefined>(defaultDate);
     const selectedDate = isControlled ? value : internalDate;
     const today = useMemo(() => new Date(), []);
     const [isFocused, setIsFocused] = useState(false);
