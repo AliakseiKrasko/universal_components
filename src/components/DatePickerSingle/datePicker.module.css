@@ -9,7 +9,7 @@
     font-weight: 400;
     line-height: 24px;
     color: #8D9094;
-    margin-bottom: 4px; /* отступ между label и DatePicker */
+    margin-bottom: 4px;
 }
 
 .requiredIndicator {
@@ -69,10 +69,10 @@
 
 
 /* Сегодняшний день */
-.rdpDay_today {
-    color: #2563eb;
-    font-weight: bold;
-}
+/*.rdpDay_today {*/
+/*    color: #2563eb;*/
+/*    font-weight: bold;*/
+/*}*/
 
 .rdpDay_selected {
     background-color: #2563eb;
@@ -100,9 +100,9 @@
 
 
 
-/* Стили для выходных */
+
 .weekendDay {
-    color: #ef4444; /* Красный цвет */
+    color: #ef4444;
 }
 
 
@@ -138,10 +138,10 @@
 
 .rdpButton_next,
 .rdpButton_previous {
-    background-color: #444;        /* Серый круг */
-    color: #fff;                   /* Белая иконка */
+    background-color: #444;
+    color: #fff;
     border: none;
-    border-radius: 50%;            /* Круг */
+    border-radius: 50%;
     width: 36px;
     height: 36px;
     padding: 8px;
@@ -154,20 +154,29 @@
 
 .rdpButton_next:hover,
 .rdpButton_previous:hover {
-    background-color: #666;        /* Потемнее при наведении */
+    background-color: #666;
 }
 
 
 
-/* Добавьте !important для приоритета */
+
+/* Пример изменения стилей для дней в диапазоне */
 .rdpDay_inRange {
-    background-color: #30d6b7 !important;
-    color: white !important;
+    background-color: #0146f3 !important; /* Цвет фона для дней в диапазоне */
+    color: white !important; /* Цвет текста для дней в диапазоне */
+    border-radius: 0;
 }
 
-.rdpDay_first,
-.rdpDay_last {
-    background-color: #2563eb !important;
-    color: white !important;
+.rdpDay_first {
+    background-color: #0146f3 !important; /* Цвет фона для первого дня диапазона */
+    color: white !important; /* Цвет текста для первого дня диапазона */
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
 }
 
+.rdpDay_last{
+    background-color: #0146f3 !important;
+    color: white !important;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}

@@ -115,21 +115,28 @@ export const DatePickerRange = ({
                                     modifiers={{
                                         today: today,
                                         weekend: (date) => date.getDay() === 0 || date.getDay() === 6,
+                                        inRange: (date) => {
+                                            const { from, to } = selectedDates;
+                                            return !! (from && to && date >= from && date <= to);
+                                        },
                                     }}
                                     modifiersClassNames={{
                                         today: s.rdpDay_today,
                                         selected: s.rdpDay_selected,
                                         weekend: s.weekendDay,
                                         disabled: s.rdpDayDisabled,
-                                        inRange: s.rdpDay_inRange, // добавляем новый класс для дат в диапазоне
+                                        inRange: s.rdpDay_inRange, // новый класс для дней в диапазоне
                                         range_start: s.rdpDay_first, // для первого дня диапазона
-                                        last: s.rdpDay_last, // для последнего дня диапазона
+                                        range_end: s.rdpDay_last, // для последнего дня диапазона
                                     }}
                                     classNames={{
                                         caption_label: s.rdpCaptionLabel,
                                         button_next: s.rdpButton_next,
                                         button_previous: s.rdpButton_previous,
                                         nav: s.rdpNav,
+                                        day_range_start: 'rdpDay_first',
+                                        day_range_end: 'rdpDay_last',
+                                        day_range_middle: 'rdpDay_inRange',
                                     }}
                                     {...calendarProps}
                                 />
