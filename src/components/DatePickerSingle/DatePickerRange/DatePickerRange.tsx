@@ -117,6 +117,7 @@ export const DatePickerRange = ({
                                             const { from, to } = selectedDates;
                                             return !! (from && to && date >= from && date <= to);
                                         },
+                                        hover: () => true,
                                     }}
                                     modifiersClassNames={{
                                         today: s.rdpDay_today,
@@ -126,6 +127,7 @@ export const DatePickerRange = ({
                                         inRange: s.rdpDay_inRange, // новый класс для дней в диапазоне
                                         range_start: s.rdpDay_first, // для первого дня диапазона
                                         range_end: s.rdpDay_last, // для последнего дня диапазона
+                                        hover: s.rdpDay_hover,
                                     }}
                                     classNames={{
                                         caption_label: s.rdpCaptionLabel,

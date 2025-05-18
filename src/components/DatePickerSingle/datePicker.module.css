@@ -67,19 +67,13 @@
     overflow: auto;
 }
 
-
-/* Сегодняшний день */
-/*.rdpDay_today {*/
-/*    color: #2563eb;*/
-/*    font-weight: bold;*/
-/*}*/
-
 .rdpDay_selected {
     background-color: #2563eb;
     color: white;
     font-weight: 600;
     border-radius: 50%;
 }
+
 
 
 /* Заблокированный день */
@@ -98,19 +92,15 @@
     color: #FFFFFF;
 }
 
+.disabled {
+    color: #B3B0B1;
+}
+
 .hint {
     font-size: 12px;
     font-weight: 400;
     color: #8D9094;
 }
-
-/*.errorMessage {*/
-/*    font-size: 12px;*/
-/*    color: red;*/
-/*    font-weight: 400;*/
-/*}*/
-
-
 
 .weekendDay {
     color: #ef4444;
@@ -123,9 +113,9 @@
     color: #FF0000;
 }
 
-.focused {
+/*.focused {
     outline: 2px solid #2684ff;
-}
+}*/
 
 
 .errorMessage {
@@ -150,7 +140,7 @@
 
 .rdpButton_next,
 .rdpButton_previous {
-    background-color: #444;
+    background-color: #4C4C4C;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -168,8 +158,6 @@
 .rdpButton_previous:hover {
     background-color: #666;
 }
-
-
 
 
 /* Пример изменения стилей для дней в диапазоне */
@@ -191,4 +179,16 @@
     color: white !important;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
+}
+
+.rdpDay_hover:hover {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #2F68CC;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: pointer;
 }
