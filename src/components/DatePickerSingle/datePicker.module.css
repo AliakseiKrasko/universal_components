@@ -98,6 +98,17 @@
     color: #FFFFFF;
 }
 
+.hint {
+    font-size: 12px;
+    font-weight: 400;
+    color: #8D9094;
+}
+
+/*.errorMessage {*/
+/*    font-size: 12px;*/
+/*    color: red;*/
+/*    font-weight: 400;*/
+/*}*/
 
 
 
@@ -109,6 +120,7 @@
 
 .error {
     border: 1px solid red;
+    color: #FF0000;
 }
 
 .focused {
