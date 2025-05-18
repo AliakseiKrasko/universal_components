@@ -106,7 +106,6 @@ export const DatePickerRange = ({
                                     animate={true}
                                     showOutsideDays
                                     weekStartsOn={1}
-                                    disabled={{ before: today }}
                                     mode="range"
                                     selected={selectedDates}
                                     onSelect={handleSelect}
